@@ -1,0 +1,24 @@
+import { Container, Grid, TextField, Button, Typography } from '@mui/material';
+
+const App = () => {
+  return (
+    <Container>
+      <Typography variant="h4" gutterBottom>Trading Dashboard</Typography>
+
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            label="Search Symbol"
+            variant="outlined"
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <Button variant="contained" fullWidth>
+            Search
+          </Button>
+        </Grid>
+      </Grid>
+    </Container>
+  );
+};
