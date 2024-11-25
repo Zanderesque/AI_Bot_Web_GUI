@@ -1,0 +1,47 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;  /* Clean, sans-serif font for a modern look */
+    background: #ffffff;  /* White background for clean space */
+    color: #333;  /* Dark text color for readability */
+    margin: 0;
+    padding: 0;
+}
+
+/* Header and Logo Styling */
+header {
+    background: linear-gradient(to right, #9b4dca, #ff0066, #00d1b2, #0066cc);  /* Gradient background from purple-pink to green-blue */
+    padding: 20px;
+    text-align: center;
+}
+
+/* Logo Text Styling */
+h1 {
+    font-size: 48px;
+    font-weight: bold;
+    background: linear-gradient(to right, #9b4dca, #0066cc);  /* Gradient for "KiwiTon" */
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+h2 {
+    font-size: 48px;
+    font-weight: bold;
+    color: #00d1b2;  /* Solid teal color for "Tech" */
+}
+
+/* Animation for Dynamic Effect */
+@keyframes logoPulse {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
+
+header h1, header h2 {
+    animation: logoPulse 3s ease-in-out infinite;  /* Pulsing effect for logo text */
+}
