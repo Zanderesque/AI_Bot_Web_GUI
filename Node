@@ -1,0 +1,67 @@
+import React, { useState, useEffect } from 'react';
+import { Container, TextField, Button, Typography, Paper, Grid } from '@mui/material';
+import axios from 'axios';
+
+function App() {
+    const [symbol, setSymbol] = useState('');
+    const [searchResult, setSearchResult] = useState([]);
+
+    useEffect(() => {
+        // Fetching initial data (trades, etc.)
+    }, []);
+
+    const handleSearch = () => {
+        axios.get(`http://localhost:5000/api/search/${symbol}`)
+            .then(response => {
+                setSearchResult(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
+
+    return (
+        <Container>
+            <Typography variant="h4" gutterBottom>Trading Dashboard</Typography>
+
+            <Grid container spacing={2}>
+                <Grid item xs={12} md={6}>
+                    <TextField 
+                        label="Search Stock/Crypto Symbol"
+                        variant="outlined"
+                        fullWidth
+                        value={symbol}
+                        onChange={(e) => setSymbol(e.target.value)}
+                    />
+                </Grid>
+
+                <Grid item xs={12} md={6}>
+                    <Button 
+                        variant="contained" 
+                        color="primary" 
+                        onClick={handleSearch} 
+                        fullWidth
+                    >
+                        Search
+                    </Button>
+                </Grid>
+            </Grid>
+
+            {searchResult.length > 0 ? (
+                <Paper style={{ marginTop: '20px', padding: '20px' }}>
+                    <Typography variant="h6">Search Results:</Typography>
+                    {searchResult.map((item) => (
+                        <div key={item.id}>
+                            <Typography variant="body1">{item.name} ({item.symbol})</Typography>
+                            <Typography variant="body2">Price: ${item.current_price}</Typography>
+                        </div>
+                    ))}
+                </Paper>
+            ) : (
+                <Typography>No results found</Typography>
+            )}
+        </Container>
+    );
+}
+
+export default App;
